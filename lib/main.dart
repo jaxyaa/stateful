@@ -1,41 +1,46 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(Coba());
+}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class Coba extends StatefulWidget {
+  @override
+  State<Coba> createState() => Coba_State();
+}
+
+class Coba_State extends State<Coba> {
+  List<String> menumakanan = ["Soto", "Mie Ayam", "Ayam Geprek"];
+  List<String> harga = ["10000", "12000", "15000"];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        // useMaterial3: false,
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Color(0xFFE8D5B7),
+        appBar: AppBar(
+          title: Text("Menu Makanan"),
+          backgroundColor: Color(0xffd2aa68),
+        ),
+        body: Center(
+          child: Column(children: [
+            Table(
+              border: TableBorder.all(),
+              children: [
+                TableRow(children: [
+                  Text("No"),
+                  Text("Menu Makanan"),
+                  Text("Harga")
+                ]),
+                for (int i = 0; i < menumakanan.length; i++)
+                  TableRow(children: [
+                    Text("${i + 1}"),
+                    Text(menumakanan[i]),
+                    Text(harga[i])
+                  ]), // TableRow
+              ],
+            )
+          ]),
         ),
       ),
     );
